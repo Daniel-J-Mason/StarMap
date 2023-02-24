@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: create
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.orm.jpa: DEBUG
+    StarMap: INFO
+    hibernate: INFO
+  file:
+    logging.log
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mariadb://localhost:45530/StarMap
+    username: ${STARMAP_USERNAME}
+    password: ${STARMAP_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mariadb://192.168.1.25:3306/Soundscape
+    username: ${SERVER_USERNAME}
+    password: ${SERVER_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
