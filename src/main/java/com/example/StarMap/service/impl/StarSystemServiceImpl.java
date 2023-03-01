@@ -6,6 +6,8 @@ import com.example.StarMap.service.StarSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StarSystemServiceImpl implements StarSystemService {
     
@@ -20,6 +22,11 @@ public class StarSystemServiceImpl implements StarSystemService {
     @Override
     public StarSystem saveStarSystem(StarSystem starSystem) {
         return starSystemRepository.save(starSystem);
+    }
+    
+    @Override
+    public List<StarSystem> systemsWithinRangeOf(StarSystem origin, double range) {
+        return starSystemRepository.systemsWithinRangeOf(origin, range);
     }
     
     

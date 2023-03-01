@@ -5,11 +5,11 @@ import java.util.Objects;
 
 @Embeddable
 public class Coordinate {
-    private int x;
-    private int y;
-    private int z;
+    private float x;
+    private float y;
+    private float z;
     
-    public Coordinate(int x, int y, int z) {
+    public Coordinate(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -24,27 +24,27 @@ public class Coordinate {
                         + Math.pow(z - other.getZ(), 2));
     }
     
-    public int getX() {
+    public float getX() {
         return x;
     }
     
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
     
-    public int getY() {
+    public float getY() {
         return y;
     }
     
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
     
-    public int getZ() {
+    public float getZ() {
         return z;
     }
     
-    public void setZ(int z) {
+    public void setZ(float z) {
         this.z = z;
     }
     
