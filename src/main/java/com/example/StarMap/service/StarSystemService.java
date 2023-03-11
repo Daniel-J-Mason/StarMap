@@ -8,7 +8,11 @@ public interface StarSystemService {
     
     StarSystem getStarSystem(String name);
     
+    StarSystem getStarSystem(Long key);
+    
     StarSystem saveStarSystem(StarSystem starSystem);
     
     List<StarSystem> systemsWithinRangeOf(StarSystem origin, double range);
+    
+    List<String> autoCompleteStarSystem(String substring);
 }

@@ -14,6 +14,16 @@ public interface StarSystemRepository extends JpaRepository<StarSystem, Long> {
     StarSystem findStarSystemByName(String name);
     
     //SpEL binding?
-    @Query("SELECT s FROM StarSystem s WHERE SQRT(POWER(:#{#origin.coordinate.x} - s.coordinate.x, 2) + POWER(:#{#origin.coordinate.y} - s.coordinate.y, 2) + POWER(:#{#origin.coordinate.z} - s.coordinate.z, 2)) < :#{#distance}")
+    @Query("SELECT s " +
+            "FROM StarSystem s " +
+            "WHERE SQRT(" +
+            "POWER(:#{#origin.coordinate.x} - s.coordinate.x, 2) + " +
+            "POWER(:#{#origin.coordinate.y} - s.coordinate.y, 2) + " +
+            "POWER(:#{#origin.coordinate.z} - s.coordinate.z, 2)) " +
+            "< :#{#distance}")
     List<StarSystem> systemsWithinRangeOf(@Param("origin") StarSystem origin, @Param("distance") double distance);
+    
+    //Native JPA Query List<StarSystem> findByNameContainingIgnoreCase(String substring);
+    @Query("SELECT s.name FROM StarSystem s WHERE s.name LIKE %?1%")
+    List<String> autoCompleteStarSystem(String substring);
 }

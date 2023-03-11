@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StarSystemServiceImpl implements StarSystemService {
@@ -20,6 +21,12 @@ public class StarSystemServiceImpl implements StarSystemService {
     }
     
     @Override
+    public StarSystem getStarSystem(Long key){
+        Optional<StarSystem> starSystem = starSystemRepository.findById(key);
+        return starSystem.orElse(null);
+    }
+    
+    @Override
     public StarSystem saveStarSystem(StarSystem starSystem) {
         return starSystemRepository.save(starSystem);
     }
@@ -29,5 +36,8 @@ public class StarSystemServiceImpl implements StarSystemService {
         return starSystemRepository.systemsWithinRangeOf(origin, range);
     }
     
-    
+    @Override
+    public List<String> autoCompleteStarSystem(String substring) {
+        return starSystemRepository.autoCompleteStarSystem(substring);
+    }
 }
