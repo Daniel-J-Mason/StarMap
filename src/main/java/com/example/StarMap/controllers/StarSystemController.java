@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/StarSystems")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class StarSystemController {
     
     @Autowired
