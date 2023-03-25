@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface StarSystemRepository extends JpaRepository<StarSystem, Long> {
-    @Query("SELECT s FROM StarSystem s WHERE s.name = ?1")
+    @Query("SELECT s FROM StarSystem s WHERE lower(s.name) = lower(?1)")
     StarSystem findStarSystemByName(String name);
     
     //SpEL binding?

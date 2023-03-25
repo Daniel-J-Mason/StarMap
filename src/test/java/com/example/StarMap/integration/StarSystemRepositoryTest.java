@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @DataJpaTest
@@ -22,12 +23,11 @@ public class StarSystemRepositoryTest {
     @Test
     void findStarByNameTest() {
         //given
-        StarSystem sol = new StarSystem("Sol", new Coordinate(0, 0, 0));
+        StarSystem sol = new StarSystem("Sol", new Coordinate(0, 0, 0), new HashSet<>());
         testRepository.save(sol);
         //when
         StarSystem returnSystem = testRepository.findStarSystemByName("Sol");
         //then
-    
         Assertions.assertEquals("Sol", returnSystem.getName());
     }
     
@@ -35,12 +35,12 @@ public class StarSystemRepositoryTest {
     void starsWithinRangeOfTest() {
         //given
         List<StarSystem> testStars = new ArrayList<>();
-        testStars.add(new StarSystem("Sol", new Coordinate(0, 0, 0)));
-        testStars.add(new StarSystem("xStar", new Coordinate(100, 0, 0)));
-        testStars.add(new StarSystem("yStar", new Coordinate(0, 100, 0)));
-        testStars.add(new StarSystem("zStar", new Coordinate(0, 0, 100)));
-        testStars.add(new StarSystem("comboStar", new Coordinate(24, 24, 24)));
-        testStars.add(new StarSystem("lostStart", new Coordinate(200, 200, 200)));
+        testStars.add(new StarSystem("Sol", new Coordinate(0, 0, 0), new HashSet<>()));
+        testStars.add(new StarSystem("xStar", new Coordinate(100, 0, 0), new HashSet<>()));
+        testStars.add(new StarSystem("yStar", new Coordinate(0, 100, 0), new HashSet<>()));
+        testStars.add(new StarSystem("zStar", new Coordinate(0, 0, 100), new HashSet<>()));
+        testStars.add(new StarSystem("comboStar", new Coordinate(24, 24, 24), new HashSet<>()));
+        testStars.add(new StarSystem("lostStart", new Coordinate(200, 200, 200), new HashSet<>()));
         testRepository.saveAll(testStars);
         
         //when

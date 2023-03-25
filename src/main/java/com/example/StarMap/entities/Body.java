@@ -34,10 +34,10 @@ public class Body extends KeyEntity {
     String atmosphereType;
     @Type(PostgreSQLHStoreType.class)
     @Column(columnDefinition = "hstore")
-    HashMap<String, Double> atmosphereComposition;
+    HashMap<String, String> atmosphereComposition;
     @Type(PostgreSQLHStoreType.class)
     @Column(columnDefinition = "hstore")
-    HashMap<String, Double> solidComposition;
+    HashMap<String, String> solidComposition;
     String terraformingState;
     double orbitalPeriod;
     double semiMajorAxis;
@@ -49,7 +49,7 @@ public class Body extends KeyEntity {
     double axialTilt;
     @Type(PostgreSQLHStoreType.class)
     @Column(columnDefinition = "hstore")
-    HashMap<String, Double> materials;
+    HashMap<String, String> materials;
     @ManyToOne(optional = true)
     @JoinColumn(name = "system_id", nullable = true)
     @JsonIgnore
