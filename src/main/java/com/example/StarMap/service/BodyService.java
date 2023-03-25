@@ -5,4 +5,6 @@ import com.example.StarMap.entities.Body;
 public interface BodyService {
     
     Body getBody(String name);
+    
+    Body getBody(Long id);
 }

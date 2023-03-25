@@ -15,26 +15,21 @@ public class StarSystemController {
     
     @Autowired
     private StarSystemService starSystemService;
-    
-    @Autowired
-    private BodyService bodyService;
-    
-    //filler
+
     @GetMapping("/name/{name}")
     public StarSystem getSytemByName(@PathVariable String name){
         return starSystemService.getStarSystem(name);
+    }
+    
+    @GetMapping("/id/{pk}")
+    public StarSystem getSystemByID(@PathVariable Long id){
+        return starSystemService.getStarSystem(id);
     }
     
     @GetMapping("/withinDistance")
     public List<StarSystem> systemsInRangeOf(@RequestParam Long originKey, @RequestParam double distance){
         StarSystem origin = starSystemService.getStarSystem(originKey);
         return starSystemService.systemsWithinRangeOf(origin, distance);
-    }
-    
-    @GetMapping("/body/{name}")
-    public Body getByName(@PathVariable String name){
-        name = name.toLowerCase();
-        return bodyService.getBody(name);
     }
     
     @GetMapping("/autoCompleteName")

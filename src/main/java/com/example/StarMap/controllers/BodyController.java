@@ -1,0 +1,29 @@
+package com.example.StarMap.controllers;
+
+import com.example.StarMap.entities.Body;
+import com.example.StarMap.service.BodyService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(value = "/api/Bodies")
+public class BodyController {
+    
+    @Autowired
+    private BodyService bodyService;
+    
+    @GetMapping("/id/{id}")
+    public Body getByID(@PathVariable Long id){
+        return  bodyService.getBody(id);
+    }
+    
+    @GetMapping("/name/{name}")
+    public Body getByName(@PathVariable String name){
+        name = name.toLowerCase();
+        return bodyService.getBody(name);
+    }
+    
+}
