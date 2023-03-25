@@ -82,6 +82,7 @@
 				<version>3.2.2</version>
 			</plugin>
 		</plugins>
+		<finalName>StarMap_API</finalName>
 	</build>
 
 </project>

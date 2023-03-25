@@ -9,7 +9,7 @@ maven-build:
     script: "mvn package -B"
     artifacts:
         paths:
-            - target/*.war
+            - target/*.jar
 Deploy:
     stage: deploy
     variables:
@@ -17,7 +17,7 @@ Deploy:
         SERVER_USERNAME: $SERVER_USERNAME
     when: manual
     script:
-        - scp -o StrictHostKeyChecking=no /home/gitlab-runner/builds/xEAPXJdS/0/Daniel-Mason/StarMap/target/ROOT.war hive:/home/orca/EDSM_APP/API_LAYER
+        - scp -o StrictHostKeyChecking=no /home/gitlab-runner/builds/xEAPXJdS/0/Daniel-Mason/StarMap/target/StarMap_API.jar hive:/home/orca/EDSM_APP/API_LAYER
         - 'cd /home/orca/EDSM_APP/API_LAYER'
         - 'sudo docker build -t StarMap_API'
         - 'sudo docker rm -v /StarMap_API_Container'
