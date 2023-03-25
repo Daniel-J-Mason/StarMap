@@ -18,8 +18,4 @@ Deploy:
     when: manual
     script:
         - scp -o StrictHostKeyChecking=no /home/gitlab-runner/builds/xEAPXJdS/0/Daniel-Mason/StarMap/target/StarMap_API.jar hive:/home/orca/EDSM_APP/API_LAYER
-        - 'ssh hive'
-        - 'cd /home/orca/EDSM_APP/API_LAYER'
-        - 'sudo docker build -t StarMap_API'
-        - 'sudo docker rm -v /StarMap_API_Container'
-        - 'sudo docker run -p 8080:8080 -it --name StarMap_API_Container StarMap_API'
+        - ssh hive "cd /home/orca/EDSM_APP/API_LAYER && sudo docker build -t StarMap_API && sudo docker rm -v /StarMap_API_Container && sudo docker run -p 8080:8080 -it --name StarMap_API_Container StarMap_API"
