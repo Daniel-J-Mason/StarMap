@@ -22,7 +22,7 @@ public class StarSystemController {
         return starSystemService.getStarSystem(name);
     }
     
-    @GetMapping("/id/{pk}")
+    @GetMapping("/id/{id}")
     public StarSystem getSystemByID(@PathVariable Long id){
         return starSystemService.getStarSystem(id);
     }
