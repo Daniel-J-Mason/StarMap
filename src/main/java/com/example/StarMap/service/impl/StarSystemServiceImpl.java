@@ -39,6 +39,6 @@ public class StarSystemServiceImpl implements StarSystemService {
     
     @Override
     public List<StarSystemDTO> findByNameContains(String query) {
-        return starSystemRepository.findByNameContains(query);
+        return starSystemRepository.findByNameContains(query, query);
     }
 }

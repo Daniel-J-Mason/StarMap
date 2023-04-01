@@ -24,10 +24,14 @@ public interface StarSystemRepository extends JpaRepository<StarSystem, Long> {
             "< :#{#distance}")
     List<StarSystem> systemsWithinRangeOf(@Param("origin") StarSystem origin, @Param("distance") double distance);
     
-    @Query(value = "SELECT " +
+    // JPA cannot rebind a blind query to both %q% and q%, duplicate query injected until a better solution is found
+    @Query("SELECT " +
             "new com.example.StarMap.DTOs.StarSystemDTO(s.pk, s.id64, s.name,  " +
             "new com.example.StarMap.objects.Coordinate(s.coordinate.x, s.coordinate.y, s.coordinate.z)) " +
             "FROM StarSystem s " +
-            "WHERE s.name ILIKE %?1%")
-    List<StarSystemDTO> findByNameContains(String query);
+            "WHERE s.name ILIKE %:query% " +
+            "ORDER BY " +
+            "CASE WHEN s.name ILIKE :duplicateQuery% THEN 0 ELSE 1 END," +
+            "s.name")
+    List<StarSystemDTO> findByNameContains(@Param("query") String query, @Param("duplicateQuery") String duplicateQuery);
 }
