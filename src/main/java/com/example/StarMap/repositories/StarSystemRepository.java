@@ -1,5 +1,6 @@
 package com.example.StarMap.repositories;
 
+import com.example.StarMap.DTOs.StarSystemDTO;
 import com.example.StarMap.entities.StarSystem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +24,10 @@ public interface StarSystemRepository extends JpaRepository<StarSystem, Long> {
             "< :#{#distance}")
     List<StarSystem> systemsWithinRangeOf(@Param("origin") StarSystem origin, @Param("distance") double distance);
     
-    @Query("SELECT s FROM StarSystem s WHERE s.name ILIKE %?1%")
-    List<StarSystem> findByNameContains(String query);
+    @Query(value = "SELECT " +
+            "new com.example.StarMap.DTOs.StarSystemDTO(s.pk, s.id64, s.name,  " +
+            "new com.example.StarMap.objects.Coordinate(s.coordinate.x, s.coordinate.y, s.coordinate.z)) " +
+            "FROM StarSystem s " +
+            "WHERE s.name ILIKE %?1%")
+    List<StarSystemDTO> findByNameContains(String query);
 }

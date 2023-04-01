@@ -1,5 +1,6 @@
 package com.example.StarMap.service.impl;
 
+import com.example.StarMap.DTOs.StarSystemDTO;
 import com.example.StarMap.entities.StarSystem;
 import com.example.StarMap.repositories.StarSystemRepository;
 import com.example.StarMap.service.StarSystemService;
@@ -37,7 +38,7 @@ public class StarSystemServiceImpl implements StarSystemService {
     }
     
     @Override
-    public List<StarSystem> findByNameContains(String query) {
+    public List<StarSystemDTO> findByNameContains(String query) {
         return starSystemRepository.findByNameContains(query);
     }
 }

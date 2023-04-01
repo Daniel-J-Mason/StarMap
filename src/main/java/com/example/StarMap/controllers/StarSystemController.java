@@ -1,12 +1,10 @@
 package com.example.StarMap.controllers;
 
-import com.example.StarMap.entities.Body;
+import com.example.StarMap.DTOs.StarSystemDTO;
 import com.example.StarMap.entities.StarSystem;
-import com.example.StarMap.service.BodyService;
 import com.example.StarMap.service.StarSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,7 +28,7 @@ public class StarSystemController {
     
     @PostMapping(value="/search",
     consumes="text/plain")
-    public List<StarSystem> starSystemSearch(@RequestBody String query){
+    public List<StarSystemDTO> starSystemSearch(@RequestBody String query){
         return starSystemService.findByNameContains(query);
     }
     
