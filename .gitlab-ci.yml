@@ -17,4 +17,4 @@ Deploy:
         SERVER_USERNAME: $SERVER_USERNAME
     script:
         - scp -o StrictHostKeyChecking=no /home/gitlab-runner/builds/xEAPXJdS/0/Daniel-Mason/StarMap/target/StarMap_API.jar hive:/home/orca/EDSM_APP/API_LAYER
-        - ssh hive "cd /home/orca/EDSM_APP/API_LAYER && docker build -t starmap_api --build-arg SERVER_USERNAME=$SERVER_USERNAME --build-arg SERVER_PASSWORD=$SERVER_PASSWORD . && docker rm -v -f /starmap_api_container && docker run -d -p 8080:8080 -it --name starmap_api_container starmap_api"
+        - ssh hive "cd /home/orca/EDSM_APP/API_LAYER && docker build -t starmap_api --build-arg SERVER_USERNAME=$SERVER_USERNAME --build-arg SERVER_PASSWORD=$SERVER_PASSWORD . && docker rm -v -f /starmap_api_container && docker run -d -p 8080:8080 -it --restart always --name starmap_api_container starmap_api"
