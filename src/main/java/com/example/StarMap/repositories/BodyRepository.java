@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BodyRepository extends JpaRepository<Body, Long> {
     
-    @Query("SELECT b FROM Body b WHERE lower(b.name) = ?1")
+    @Query("SELECT b FROM Body b WHERE lower(b.name) = lower(?1)")
     Body findBodyByName(String name);
 }

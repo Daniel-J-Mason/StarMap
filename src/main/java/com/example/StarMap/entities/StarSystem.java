@@ -1,10 +1,8 @@
 package com.example.StarMap.entities;
 
 import com.example.StarMap.objects.Coordinate;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 import java.util.Objects;

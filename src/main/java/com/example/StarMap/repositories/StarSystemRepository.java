@@ -23,7 +23,6 @@ public interface StarSystemRepository extends JpaRepository<StarSystem, Long> {
             "< :#{#distance}")
     List<StarSystem> systemsWithinRangeOf(@Param("origin") StarSystem origin, @Param("distance") double distance);
     
-    //Native JPA Query List<StarSystem> findByNameContainingIgnoreCase(String substring);
-    @Query("SELECT s.name FROM StarSystem s WHERE s.name LIKE %?1%")
-    List<String> autoCompleteStarSystem(String substring);
+    @Query("SELECT s FROM StarSystem s WHERE s.name ILIKE %?1%")
+    List<StarSystem> findByNameContains(String query);
 }

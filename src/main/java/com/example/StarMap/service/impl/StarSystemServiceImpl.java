@@ -37,7 +37,7 @@ public class StarSystemServiceImpl implements StarSystemService {
     }
     
     @Override
-    public List<String> autoCompleteStarSystem(String substring) {
-        return starSystemRepository.autoCompleteStarSystem(substring);
+    public List<StarSystem> findByNameContains(String query) {
+        return starSystemRepository.findByNameContains(query);
     }
 }

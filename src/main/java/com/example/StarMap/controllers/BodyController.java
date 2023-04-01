@@ -20,7 +20,7 @@ public class BodyController {
     
     @GetMapping("/name/{name}")
     public Body getByName(@PathVariable String name){
-        name = name.toLowerCase();
+        name = name.replaceAll("\\+", " ");
         return bodyService.getBody(name);
     }
     

@@ -14,5 +14,5 @@ public interface StarSystemService {
     
     List<StarSystem> systemsWithinRangeOf(StarSystem origin, double range);
     
-    List<String> autoCompleteStarSystem(String substring);
+    List<StarSystem> findByNameContains(String query);
 }

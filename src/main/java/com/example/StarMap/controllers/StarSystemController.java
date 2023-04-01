@@ -19,6 +19,7 @@ public class StarSystemController {
 
     @GetMapping("/name/{name}")
     public StarSystem getSytemByName(@PathVariable String name){
+        name = name.replaceAll("\\+", " ");
         return starSystemService.getStarSystem(name);
     }
     
@@ -27,17 +28,15 @@ public class StarSystemController {
         return starSystemService.getStarSystem(id);
     }
     
-    @GetMapping("/withinDistance")
-    public List<StarSystem> systemsInRangeOf(@RequestParam Long originKey, @RequestParam double distance){
-        StarSystem origin = starSystemService.getStarSystem(originKey);
-        return starSystemService.systemsWithinRangeOf(origin, distance);
+    @PostMapping(value="/search",
+    consumes="text/plain")
+    public List<StarSystem> starSystemSearch(@RequestBody String query){
+        return starSystemService.findByNameContains(query);
     }
     
-    @GetMapping("/autoCompleteName")
-    public List<String> autoCompleteStarSystem(@RequestParam String substring){
-        if (substring.length() >= 3){
-            return starSystemService.autoCompleteStarSystem(substring);
-        }
-        return new ArrayList<>();
+    @GetMapping("/withinDistance")
+    public List<StarSystem> systemsInRangeOf(@RequestParam Long originKey, @RequestParam double distance) {
+        StarSystem origin = starSystemService.getStarSystem(originKey);
+        return starSystemService.systemsWithinRangeOf(origin, distance);
     }
 }
